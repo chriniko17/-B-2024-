@@ -1,17 +1,17 @@
-def clear(a,x,y,d):
-    ans=0
-    for i in range(x-d,x+d+1):
-        for j in range(y-d,y+d+1):
-            ans+=a[i][j]
-    return ans
-a=[[0]*1025 for i in range(1025)]
+c=[[0]*1025 for i in range(1025)]
 d=int(input())
 n=int(input())
+num,ans=1,0
 for _ in range(n):
-    x,y,i=map(int,input().split())
-    a[x][y]=i
-ans=0
-for i in range(d,1025-d):
-    for j in range(d,1025-d):
-        ans=max(ans,clear(a,i,j,d))
-print(ans)
+    x,y,m=map(int,input().split())
+    for i in range(max(0,x-d),min(1025,x+d+1)):
+        for j in range(max(0,y-d),min(1025,y+d+1)):
+            c[i][j]+=m
+for i in range(1025):
+    for j in range(1025):
+        if c[i][j]>ans:
+            num=1
+            ans=c[i][j]
+        elif c[i][j]==ans:
+            num+=1
+print(num,ans)
